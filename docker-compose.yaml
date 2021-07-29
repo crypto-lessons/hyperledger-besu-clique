@@ -1,0 +1,15 @@
+version: "3.3"
+services:
+  hyperledger_besu:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: hyperledger_besu
+    hostname: hyperledger_besu
+    volumes:
+      - ./config/genesis.json:/home/besu/genesis.json
+      - ./data:/home/besu/data
+    ports:
+      - ${JSONRPC_PORT}:8545
+      - ${NETWORK_PORT}:8546
+      - ${WS_PORT}:30303
